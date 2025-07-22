@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 10:17:21 by root              #+#    #+#             */
-/*   Updated: 2025/07/22 10:33:59 by root             ###   ########.fr       */
+/*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
+/*   Updated: 2025/07/22 10:20:25 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef CUB3D_H
+#define CUB3D_H
 
-int line_size(char *str)
-{
-	int i;
-	i = 0;
-	while (str[i])
-	{
-		i++;
-	}
-	return (i);
-}
+#include "unistd.h"
+#include "stdio.h"
+#include "stdlib.h"
+#include "minilibx-linux/mlx.h"
 
-int main(void)
-{
-    void *mlx;
-    void *win;
-
-    mlx = mlx_init();
-    win = mlx_new_window(mlx, 800, 600, "Cub3D Test");
-    mlx_loop(mlx);
-    return 0;
-}
-
+#endif
