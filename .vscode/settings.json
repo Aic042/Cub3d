@@ -2,5 +2,6 @@
 	"files.associations": {
 		"mlx_int.h": "c",
 		"cub3d.h": "c"
-	}
+	},
+	"cmake.sourceDirectory": "/root/42projects/Cursus/Cub3d/MLX42"
 }
