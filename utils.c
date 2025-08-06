@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:21 by root              #+#    #+#             */
-/*   Updated: 2025/07/22 15:51:49 by root             ###   ########.fr       */
+/*   Updated: 2025/08/06 14:16:48 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,37 @@ int line_size(char *str)
 	return (i);
 }
 
+// -----------------------------------------------------------------------------
+
 int main(void)
 {
-    void *mlx;
-    void *win;
+	mlx_t* mlx;
 
-    mlx = mlx_init();
-	printf("Window created with size %d x %d\n", WIDTH, HEIGHT);
-	printf("press ESC to exit\n");
-	if (!mlx)
+	// Gotta error check this stuff
+	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
 	{
-		fprintf(stderr, "Failed to initialize mlx\n");
-		return 1;
+		puts(mlx_strerror(mlx_errno));
+		return(EXIT_FAILURE);
 	}
-    win = mlx_new_window(mlx, WIDTH, HEIGHT, "Cub3D Test");
-    mlx_loop(mlx);
-	mlx_mouse_show(mlx, win);
-	if(mlx_key_hook(mlx, KEY_ESC, NULL))
+	if (!(image = mlx_new_image(mlx, 128, 128)))
 	{
-		mlx_destroy_window(mlx, win);
+		mlx_close_window(mlx);
+		puts(mlx_strerror(mlx_errno));
+		return(EXIT_FAILURE);
 	}
-    return 0;
+	if (mlx_image_to_window(mlx, image, 0, 0) == -1)
+	{
+		mlx_close_window(mlx);
+		puts(mlx_strerror(mlx_errno));
+		return(EXIT_FAILURE);
+	}
+	
+	mlx_loop_hook(mlx, ft_randomize, mlx);
+	mlx_loop_hook(mlx, ft_hook, mlx);
+
+	mlx_loop(mlx);
+	mlx_terminate(mlx);
+	return (EXIT_SUCCESS);
 }
 
 // derecha e izquierda giras pero no te mueves
