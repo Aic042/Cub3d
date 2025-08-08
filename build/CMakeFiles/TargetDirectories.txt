@@ -1,0 +1,7 @@
+/root/42projects/Cursus/Cub3d/build/CMakeFiles/mlx42.dir
+/root/42projects/Cursus/Cub3d/build/CMakeFiles/edit_cache.dir
+/root/42projects/Cursus/Cub3d/build/CMakeFiles/rebuild_cache.dir
+/root/42projects/Cursus/Cub3d/build/CMakeFiles/list_install_components.dir
+/root/42projects/Cursus/Cub3d/build/CMakeFiles/install.dir
+/root/42projects/Cursus/Cub3d/build/CMakeFiles/install/local.dir
+/root/42projects/Cursus/Cub3d/build/CMakeFiles/install/strip.dir

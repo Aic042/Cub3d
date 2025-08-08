@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2025/08/06 14:14:35 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/08/08 13:20:01 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 #include "unistd.h"
 #include "stdio.h"
 #include "stdlib.h"
-#include "MLX42/include/MLX42/MLX42.h"
-
-struct cub3d
+#include "lib/MLX42/include/MLX42/MLX42.h"
+#include "lib/libft/libft.h"
+typedef struct s_game
 {
 	void *mlx;
 	void *win;
 	char *title;
-};
+} t_game;
 
 #endif
