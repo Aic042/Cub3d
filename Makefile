@@ -1,4 +1,4 @@
-NAME	= so_long
+NAME	= cub3d
 LIBMLX	= lib/MLX42
 LIBFT	= lib/libft
 
@@ -44,7 +44,7 @@ libft:
 
 $(NAME): $(OBJS)
 	@echo "$(GREEN)🔗 Linking $(NAME)...$(RESET)"
-	cc $(OBJS) -L$(LIBFT) -lft -L$(LIBMLX)/build -lmlx42 -lglfw -o $(NAME)
+	cc $(OBJS) -L$(LIBFT) -lft -L$(LIBMLX)/build -lmlx42 -lglfw -lm -o $(NAME)
 
 fun_msg:
 	@echo "$(GREEN)$(shell shuf -n 1 -e 'Build complete! 🚀' 'Time to play! 🎮' 'so_long is ready! ✅')$(RESET)"
