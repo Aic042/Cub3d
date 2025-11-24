@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   init_vars.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/17 20:16:07 by root              #+#    #+#             */
-/*   Updated: 2025/11/21 15:23:13 by sbolivar         ###   ########.fr       */
+/*   Created: 2025/11/24 11:03:40 by sbolivar          #+#    #+#             */
+/*   Updated: 2025/11/24 11:05:34 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	ft_validate_file(char	*map_path)
+void	init_vars(t_game *game, t_player *player)
 {
-	char	*file;
-
-	file = ft_strrchr(map_path, '.');
-	if (file == NULL || ft_strcmp(file, ".cub") != 0)
-	{
-		ft_printf("Error with the file");
-		return (0);
-	}
-	return (1);
+	player->x = 0;
+	player->y = 0;
+	game->size_x = 0;
+	game->size_y = 0;
 }

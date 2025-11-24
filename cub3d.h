@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2025/11/17 22:43:35 by root             ###   ########.fr       */
+/*   Updated: 2025/11/24 13:33:03 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,33 +33,43 @@ typedef struct s_player
 {
 	long x;
 	long y;
-	float angle;
-	bool left_rotate;
+	float	angle;
+	bool	left_rotate;
 	bool right_rotate;
-
 } t_player;
 
 typedef struct s_game
 {
-	mlx_t *mlx;
-	mlx_image_t *image;
-	char **map;
-	void *win;
-	char *pixel;
-	int size_of_line;
-	int	bpp;
-	char *title;
-	t_player player;
+	mlx_t 		*mlx;
+	mlx_image_t	*image;
+	char 		**map;
+	int			size_x;
+	int			size_y;
+	void		*win;
+	char		*pixel;
+	int 		size_of_line;
+	int			bpp;
+	char 		*title;
+	t_player 	player;
 } t_game;
 
 
 void	ft_my_hook(mlx_key_data_t keydata, void	*param);
-bool touch (t_game *game, int player_x, int player_y);
-void init_player(t_player *player);
-void map_drawer(t_game *game);
-char **get_map(void);
-void init_game(t_game *game);
-void pixel_placer(int x, int y, uint32_t color, t_game *game);
-void draw_square(int x, int y, int size, uint32_t color, t_game *game);
+bool	touch(t_game *game, int player_x, int player_y);
+int		player_case(int x, int y, char **map);
+int		zero_case(int x, int y, char **map);
+int		wall_case(int x, int y, char **map);
+int		space_case(int x, int y, char **map);
+void	init_player(t_player *player);
+void	init_vars(t_game *game, t_player *player);
+void	map_drawer(t_game *game);
+int		ft_strlen_strings(char **av);
+char	**get_map(t_game *game);
+int		map_parse(t_game *game);
+int		check_cases(int	*x, int y, char **map);
+int		check_walls(char **map);
+void	init_game(t_game *game);
+void	pixel_placer(int x, int y, uint32_t color, t_game *game);
+void	draw_square(int x, int y, int size, uint32_t color, t_game *game);
 
 #endif
