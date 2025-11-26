@@ -6,7 +6,8 @@
 		"iterator": "c",
 		"memory": "c",
 		"random": "c",
-		"functional": "c"
+		"functional": "c",
+		"system_error": "c"
 	},
 	"cmake.sourceDirectory": "/root/42projects/Cursus/Cub3d/lib/MLX42"
 }

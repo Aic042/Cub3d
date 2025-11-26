@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:11:17 by root              #+#    #+#             */
-/*   Updated: 2025/11/21 19:09:17 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/11/26 00:00:54 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	map_drawer(t_game *game)
 
 	char **map = game->map; // debe recibirlo del parseo =D
 	y = 0;
-	color = 0x0000FFFF;
+	color = 0x00FFFF;
 		// blue color! Note: Aprender a como ver eso del 0xFFFFFFFF (º~º)
 	while (map[y])
 	{
