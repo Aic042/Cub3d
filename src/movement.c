@@ -1,44 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movement.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/26 15:59:39 by aingunza          #+#    #+#             */
+/*   Updated: 2025/11/26 15:59:39 by aingunza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
-
-
 
 void	ft_my_hook(mlx_key_data_t keydata, void *param)
 {
-    t_game  *game = (t_game *)param;
-    t_player *player = &game->player;
-    int speed = 5;
-    (void)keydata;
-    float angle_speed = 0.033; //33sssssssssssss
-    if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-        player->angle -= angle_speed;
-    if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-        player->angle += angle_speed;
-    if (player->angle > 2 * PI)
-        player->angle = 0;
-    if (player->angle < 0)
-        player->angle = 2 * PI;
-    if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-        mlx_close_window(game->mlx);
-    if (mlx_is_key_down(game->mlx, MLX_KEY_W)) 
-    {
-        player->x += cos(player->angle) * speed;
-        player->y += sin(player->angle) * speed;
-    }
-    if (mlx_is_key_down(game->mlx, MLX_KEY_S)) 
-    {
-        player->x -= cos(player->angle) * speed;
-        player->y -= sin(player->angle) * speed;
-    }
-    if (mlx_is_key_down(game->mlx, MLX_KEY_A))
-    {
-        player->x -= (-sin(player->angle)) * speed * 0.5;
-        player->y -= (cos(player->angle)) * speed * 0.5;
-    }
-    if (mlx_is_key_down(game->mlx, MLX_KEY_D))
-    {
-        player->x -= (sin(player->angle)) * speed * 0.5;
-        player->y -= (-cos(player->angle)) * speed * 0.5;
-    }
+	t_game  *game = (t_game *)param;
+	t_player *player = &game->player;
+	int speed = 5;
+	(void)keydata;
+	float angle_speed = 0.033; //33sssssssssssss
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
+		player->angle -= angle_speed;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
+		player->angle += angle_speed;
+	if (player->angle > 2 * PI)
+		player->angle = 0;
+	if (player->angle < 0)
+		player->angle = 2 * PI;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(game->mlx);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_W)) 
+	{
+		player->x += cos(player->angle) * speed;
+		player->y += sin(player->angle) * speed;
+	}
+	if (mlx_is_key_down(game->mlx, MLX_KEY_S)) 
+	{
+		player->x -= cos(player->angle) * speed;
+		player->y -= sin(player->angle) * speed;
+	}
+	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+	{
+		player->x -= (-sin(player->angle)) * speed * 0.5;
+		player->y -= (cos(player->angle)) * speed * 0.5;
+	}
+	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+	{
+		player->x -= (sin(player->angle)) * speed * 0.5;
+		player->y -= (-cos(player->angle)) * speed * 0.5;
+	}
 }
 
 // int	check_collisions(t_game *game, t_player *player)

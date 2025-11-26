@@ -6,7 +6,7 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:11:17 by root              #+#    #+#             */
-/*   Updated: 2025/11/26 14:13:08 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/11/26 15:41:56 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ void	map_drawer(t_game *game)
 	int	color;
 	int	y;
 	int	x;
-
-	char **map = game->map; // debe recibirlo del parseo =D
+	char **map; // debe recibirlo del parseo =D
+	
+	map = game->map;
 	y = 0;
 	color = 0x00FFFF;
 		// blue color! Note: Aprender a como ver eso del 0xFFFFFFFF (º~º)
@@ -48,7 +49,7 @@ void	map_drawer(t_game *game)
 		while (map[y][x])
 		{
 			if (map[y][x] == '1')
-				draw_square(x * 32 + 600, y * 32 + 300, 64, color, game);
+				draw_square(x * 32, y * 32, 64, color, game);
 			x++;
 		}
 		y++;
