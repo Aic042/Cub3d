@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2025/11/26 00:00:36 by root             ###   ########.fr       */
+/*   Updated: 2025/11/26 08:38:04 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	pixel_placer(int x, int y, uint32_t color, t_game *game)
 void	draw_cleaner(t_game *game)
 {
 	int y, x;
-	uint32_t background_color = 0x00000000; // Example: dark gray with full alpha
+	uint32_t background_color = 0x0000FFF; // Example: dark gray with full alpha
 	y = 0;
 	while (y < HEIGHT)
 	{
