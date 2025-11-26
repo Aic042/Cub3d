@@ -9,9 +9,9 @@ void	ft_my_hook(mlx_key_data_t keydata, void *param)
     int speed = 5;
     (void)keydata;
     float angle_speed = 0.033; //33sssssssssssss
-    if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT) || mlx_is_key_down(game->mlx, MLX_KEY_A))
+    if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
         player->angle -= angle_speed;
-    if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT) || mlx_is_key_down(game->mlx, MLX_KEY_D))
+    if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
         player->angle += angle_speed;
     if (player->angle > 2 * PI)
         player->angle = 0;
@@ -19,13 +19,25 @@ void	ft_my_hook(mlx_key_data_t keydata, void *param)
         player->angle = 2 * PI;
     if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
         mlx_close_window(game->mlx);
-    if (mlx_is_key_down(game->mlx, MLX_KEY_UP) || mlx_is_key_down(game->mlx, MLX_KEY_W)) {
+    if (mlx_is_key_down(game->mlx, MLX_KEY_W)) 
+    {
         player->x += cos(player->angle) * speed;
         player->y += sin(player->angle) * speed;
     }
-    if (mlx_is_key_down(game->mlx, MLX_KEY_DOWN) || mlx_is_key_down(game->mlx, MLX_KEY_S)) {
+    if (mlx_is_key_down(game->mlx, MLX_KEY_S)) 
+    {
         player->x -= cos(player->angle) * speed;
         player->y -= sin(player->angle) * speed;
+    }
+    if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+    {
+        player->x -= (-sin(player->angle)) * speed * 0.5;
+        player->y -= (cos(player->angle)) * speed * 0.5;
+    }
+    if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+    {
+        player->x -= (sin(player->angle)) * speed * 0.5;
+        player->y -= (-cos(player->angle)) * speed * 0.5;
     }
 }
 

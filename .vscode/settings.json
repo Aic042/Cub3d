@@ -9,5 +9,5 @@
 		"functional": "c",
 		"system_error": "c"
 	},
-	"cmake.sourceDirectory": "/root/42projects/Cursus/Cub3d/lib/MLX42"
+	"cmake.sourceDirectory": "/home/aingunza/Cub3d/lib/MLX42"
 }

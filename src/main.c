@@ -6,7 +6,7 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2025/11/26 12:17:55 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/11/26 14:36:17 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ void	pixel_placer(int x, int y, uint32_t color, t_game *game)
 		game->pixel[i + 3] = color & 0xFF; // Alpha como en blender ^^
 	}
 }
-
-// int collision(int wall_x, int wall_y, t_game *game)
-// {
-//     int x = wall_x / TILE;
-//     int y = wall_y / TILE;
-// }
 
 void	draw_cleaner(t_game *game)
 {
@@ -90,6 +84,7 @@ void draw_fov(t_game *game, t_player *player)
         ray_id++;
     }
 }
+//probando el mini mapa
 
 void	render(void *param)
 {
@@ -97,10 +92,10 @@ void	render(void *param)
 	// Clear the screen
 	draw_cleaner(game);
 	// Draw the map
-	// map_drawer(game);
 	// // Draw the player
 	// draw_square(game->player.x, game->player.y, 10, 0x00FF00FF, game);
 	draw_fov(game, &game->player);
+	// map_drawer(game);
 }
 
 int	main(void)
@@ -111,7 +106,7 @@ int	main(void)
 	game->map = get_map(game);
 	init_game(game);
 	init_player(&game->player);
-	map_drawer(game);
+	// map_drawer(game);
 	mlx_key_hook(game->mlx, &ft_my_hook, game);
 	mlx_loop_hook(game->mlx, &render, game); // draw every frame
 
