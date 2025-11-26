@@ -1,5 +1,7 @@
 #include "../cub3d.h"
 
+
+
 void	ft_my_hook(mlx_key_data_t keydata, void *param)
 {
     t_game  *game = (t_game *)param;
@@ -27,6 +29,10 @@ void	ft_my_hook(mlx_key_data_t keydata, void *param)
     }
 }
 
+// int	check_collisions(t_game *game, t_player *player)
+// {
+// 	if(player->x == )
+// }
 // ft_stop_music();
 
 // if (mlx_is_key_down(mlx, MLX_KEY_R) || (mlx_is_key_down(mlx, MLX_KEY_KP_0)))
