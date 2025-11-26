@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2025/11/24 13:33:03 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/11/25 23:50:46 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 
 typedef struct s_player
 {
-	long x;
-	long y;
+	float x;
+	float y;
 	float	angle;
 	bool	left_rotate;
 	bool right_rotate;
@@ -71,5 +71,11 @@ int		check_walls(char **map);
 void	init_game(t_game *game);
 void	pixel_placer(int x, int y, uint32_t color, t_game *game);
 void	draw_square(int x, int y, int size, uint32_t color, t_game *game);
-
+bool touch (t_game *game, int player_x, int player_y);
+void init_player(t_player *player);
+void map_drawer(t_game *game);
+void init_game(t_game *game);
+void pixel_placer(int x, int y, uint32_t color, t_game *game);
+void draw_square(int x, int y, int size, uint32_t color, t_game *game);
+float distance(float x, float y);
 #endif
