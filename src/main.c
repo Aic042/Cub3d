@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2025/11/26 16:02:37 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:11:09 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	pixel_placer(int x, int y, uint32_t color, t_game *game)
 void	draw_cleaner(t_game *game)
 {
 	int y, x;
-	uint32_t background_color = 0x0000FFF;
+	uint32_t background_color = 0x00FFF;
 	y = 0;
 	while (y < HEIGHT)
 	{
@@ -46,7 +46,7 @@ void	draw_cleaner(t_game *game)
 void draw_fov(t_game *game, t_player *player)
 {
 	float spread = PI / 6;      // 30° field of view
-	int num_rays = 524;         // Number of rays
+	int num_rays = 1200;         // Number of rays
 	float start_angle = player->angle - (spread / 2);
 	float step = spread / num_rays;
 	float ray_angle = start_angle;
@@ -77,7 +77,7 @@ void draw_fov(t_game *game, t_player *player)
 		int end_y = start_y + wall_height;
 		int column_x = (float)ray_id / num_rays * WIDTH;
 		while (start_y < end_y)
-			pixel_placer(column_x, start_y++, 0xFFFFFFFF, game);
+			pixel_placer(column_x, start_y++, 0xFFFFF, game);
 		ray_angle += step;
 		ray_id++;
 	}
