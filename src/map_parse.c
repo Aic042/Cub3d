@@ -6,13 +6,13 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 20:43:37 by sbolivar          #+#    #+#             */
-/*   Updated: 2025/11/24 15:06:56 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/11/28 17:13:24 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	check_cases(int	*x, int y, char **map)
+int	check_cases(int	*x, int y, char **map, t_player *player)
 {
 	int	check;
 
@@ -20,7 +20,11 @@ int	check_cases(int	*x, int y, char **map)
 	{
 		if (map[y][*x] == 'N' || map[y][*x] == 'S'
 			|| map[y][*x] == 'E' || map[y][*x] == 'W')
+		{
 			check = player_case(*x, y, map);
+			player->potition_x = y;
+			player->potition_y = *x;
+		}
 		else if (map[y][*x] == '0')
 			check = zero_case(*x, y, map);
 		else if (map[y][*x] == '1')
@@ -35,7 +39,7 @@ int	check_cases(int	*x, int y, char **map)
 	return (0);
 }
 
-int	check_walls(char **map)
+int	check_walls(char **map, t_player *player)
 {
 	int	x;
 	int	y;
@@ -49,7 +53,7 @@ int	check_walls(char **map)
 		if (map[y][x] == '1')
 		{
 			x++;
-			if (!check_cases(&x, y, map))
+			if (!check_cases(&x, y, map, player))
 				y++;
 			else
 				return (1);
@@ -78,7 +82,7 @@ int	map_parse(t_game *game)
 			i = 0;
 			if (y == (ft_strlen_strings(map) - 1))
 				break ;
-			if (!check_walls(map))
+			if (!check_walls(map, &game->player))
 				y = (ft_strlen_strings(map) - 1);
 			else
 				return (1);

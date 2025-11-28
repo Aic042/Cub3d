@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2025/11/28 15:10:39 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/11/28 17:15:23 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_player
 {
 	float	x;
 	float	y;
+	int		potition_x;
+	int		potition_y;
 	float	angle;
 	bool	left_rotate;
 	bool	right_rotate;
@@ -66,8 +68,8 @@ void	map_drawer(t_game *game);
 int		ft_strlen_strings(char **av);
 char	**get_map(t_game *game);
 int		map_parse(t_game *game);
-int		check_cases(int	*x, int y, char **map);
-int		check_walls(char **map);
+int		check_cases(int	*x, int y, char **map, t_player *player);
+int		check_walls(char **map, t_player *player);
 void	init_game(t_game *game);
 void	pixel_placer(int x, int y, uint32_t color, t_game *game);
 void	draw_square(int x, int y, int size, uint32_t color, t_game *game);

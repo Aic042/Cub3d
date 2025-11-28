@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2025/11/28 15:11:09 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/11/28 17:18:34 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,15 @@ void	render(void *param)
 int	main(void)
 {
 	t_game *game;
+	t_player *player;
+
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (EXIT_FAILURE);
 	game->map = get_map(game);
+	player = &game->player;
+	printf("%d\n", player->potition_x);
+	printf("%d\n", player->potition_y);
 	init_game(game);
 	init_player(&game->player);
 	// map_drawer(game);
