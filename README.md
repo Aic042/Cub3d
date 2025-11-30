@@ -7,7 +7,8 @@ Obligatorios que nos faltan:
 carga y lectura de textura
 
 Bonus
-• Wall collisions. ⛔
+
+• Wall collisions. 🍋‍🟩
 
 • A minimap system. ⛔
 
