@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2025/11/28 17:18:34 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/12/01 14:00:19 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,25 @@ void	pixel_placer(int x, int y, uint32_t color, t_game *game)
 	}
 }
 
-void	draw_cleaner(t_game *game)
+void draw_cleaner(t_game *game)
 {
-	int y, x;
-	uint32_t background_color = 0x00FFF;
-	y = 0;
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			pixel_placer(x, y, background_color, game);
-			x++;
-		}
-		y++;
-	}
+    int y = 0;
+    int x;
+	game->ceiling_color = 0x87CEEBFF;  // Sky blue con alpha
+	game->floor_color   = 0x444444FF;  // Gris oscuro con alpha
+    while (y < HEIGHT)
+    {
+        x = 0;
+        while (x < WIDTH)
+        {
+            if (y < HEIGHT / 2)
+                pixel_placer(x, y, game->ceiling_color, game);
+            else
+                pixel_placer(x, y, game->floor_color, game);
+            x++;
+        }
+        y++;
+    }
 }
 
 void draw_fov(t_game *game, t_player *player)

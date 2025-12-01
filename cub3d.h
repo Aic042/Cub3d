@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2025/11/28 17:15:23 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/12/01 14:01:12 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct s_game
 	int			bpp;
 	char		*title;
 	t_player	player;
+	uint32_t	ceiling_color;
+	uint32_t	floor_color;
 }	t_game;
 
 void	ft_my_hook(mlx_key_data_t keydata, void	*param);
