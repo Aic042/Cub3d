@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2025/11/28 17:15:23 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/12/01 14:34:36 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # define PI 3.141592653509
 # define TILE 64
 # define BABY_TILE 8
+# define MM_TILE 15
+# define MM_OFFSET 20
 
 # include "unistd.h"
 # include "stdio.h"

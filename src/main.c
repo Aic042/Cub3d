@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2025/11/28 17:18:34 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/12/01 14:34:07 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,32 @@ void	pixel_placer(int x, int y, uint32_t color, t_game *game)
 		game->pixel[i + 2] = (color >> 8) & 0xFF; // B
 		game->pixel[i + 3] = color & 0xFF; // Alpha como en blender ^^
 	}
+}
+
+void draw_minimap(t_game *g)
+{
+	for (int my = 0; my < g->size_y; my++)
+	{
+		for (int mx = 0; mx < g->size_x; mx++)
+		{
+			int px = MM_OFFSET + mx * MM_TILE;
+			int py = MM_OFFSET + my * MM_TILE;
+
+			char cell = g->map[my][mx];
+
+			if (cell == '1')
+				draw_square(px, py, MM_TILE, 0xFFFFFFFF, g);     // pared
+			else if (cell == 'D')
+				draw_square(px, py, MM_TILE, 0x8080FFFF, g);     // puerta
+			else
+				draw_square(px, py, MM_TILE, 0x000000FF, g);     // suelo
+		}
+	}
+
+	int ppx = MM_OFFSET + (int)(g->player.x * MM_TILE);
+	int ppy = MM_OFFSET + (int)(g->player.y * MM_TILE);
+
+	draw_square(ppx - 2, ppy - 2, 4, 0xFF0000FF, g);
 }
 
 void	draw_cleaner(t_game *game)
@@ -93,6 +119,7 @@ void	render(void *param)
 	// // Draw the player
 	draw_fov(game, &game->player);
 	// map_drawer(game);
+	draw_minimap(game);
 }
 
 int	main(void)
@@ -105,8 +132,6 @@ int	main(void)
 		return (EXIT_FAILURE);
 	game->map = get_map(game);
 	player = &game->player;
-	printf("%d\n", player->potition_x);
-	printf("%d\n", player->potition_y);
 	init_game(game);
 	init_player(&game->player);
 	// map_drawer(game);
