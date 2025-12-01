@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2025/12/01 14:01:12 by root             ###   ########.fr       */
+/*   Updated: 2025/12/01 15:43:25 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # define PI 3.141592653509
 # define TILE 64
 # define BABY_TILE 8
+# define MM_TILE 15
+# define MM_OFFSET 20
 
 # include "unistd.h"
 # include "stdio.h"
