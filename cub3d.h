@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2025/12/01 15:43:25 by root             ###   ########.fr       */
+/*   Updated: 2025/12/03 12:43:12 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@
 # include <stdbool.h>
 # include <math.h>
 
+/* In cub3d.h - Already good, but ensure t_texture has correct fields */
+typedef struct s_texture
+{
+    mlx_texture_t *texture;
+    uint32_t *pixels;  // RGBA format
+    int width;
+    int height;
+} t_texture;
+
 typedef struct s_player
 {
 	float	x;
@@ -40,11 +49,42 @@ typedef struct s_player
 	int		potition_y;
 	float	angle;
 	bool	left_rotate;
+	char	facing;
 	bool	right_rotate;
 }	t_player;
 
+typedef struct s_ray
+{
+	float dir_x;
+	float dir_y;
+	float delta_x;
+	float delta_y;
+	float side_x;
+	float side_y;
+	int   step_x;
+	int   step_y;
+	int   map_x;
+	int   map_y;
+	int   side;
+	float perp_dist;
+	float wall_x;
+	int   draw_start;
+	int   draw_end;
+	int   wall_height;
+	int   tex_x;
+	float tex_pos;
+	float tex_step;
+}	t_ray;
+
+
 typedef struct s_game
 {
+	
+	t_texture   north;
+    t_texture   south;
+    t_texture   east;
+    t_texture   west;
+
 	mlx_t		*mlx;
 	mlx_image_t	*image;
 	char		**map;
@@ -61,7 +101,7 @@ typedef struct s_game
 }	t_game;
 
 void	ft_my_hook(mlx_key_data_t keydata, void	*param);
-bool	touch(t_game *game, int player_x, int player_y);
+bool touch(t_game *game, float px, float py);
 int		player_case(int x, int y, char **map);
 int		zero_case(int x, int y, char **map);
 int		wall_case(int x, int y, char **map);
@@ -77,11 +117,11 @@ int		check_walls(char **map, t_player *player);
 void	init_game(t_game *game);
 void	pixel_placer(int x, int y, uint32_t color, t_game *game);
 void	draw_square(int x, int y, int size, uint32_t color, t_game *game);
-bool	touch(t_game *game, int player_x, int player_y);
+// bool	touch(t_game *game, int player_x, int player_y);
 void	init_player(t_player *player);
 void	map_drawer(t_game *game);
 void	init_game(t_game *game);
-void	pixel_placer(int x, int y, uint32_t color, t_game *game);
 void	draw_square(int x, int y, int size, uint32_t color, t_game *game);
 float	distance(float x, float y);
+void	load_all_textures(t_game *game);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initializer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:32:02 by root              #+#    #+#             */
-/*   Updated: 2025/11/21 15:23:51 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:01:27 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ void	init_game(t_game *game)
 
 void	init_player(t_player *player)
 {
-	player->x = WIDTH / 2;
-	player->y = HEIGHT / 2;
-	player->left_rotate = false;
-	player->right_rotate = false;
+	player->x = 0;
+	player->y = 0;
+    player->angle = 0;
+    player->facing = 0;
+    player->left_rotate = false;
+    player->right_rotate = false;
 }
 
 // inicializar el player ^^
