@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 19:23:07 by root              #+#    #+#             */
-/*   Updated: 2025/12/03 22:54:21 by root             ###   ########.fr       */
+/*   Updated: 2025/12/04 08:05:35 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 #include "../cub3d.h"
 
-void load_all_textures(t_game *game)
+void load_NO_SO_textures(t_game *game)
 {
-    // Hardcode paths - replace with your folder/png names
+    // replace with new pngs in case we get them
     game->north.texture = mlx_load_png("./Sprites/Texture_Side1.png");
     if (!game->north.texture)
     {
@@ -25,9 +25,8 @@ void load_all_textures(t_game *game)
     }
     game->north.width = game->north.texture->width;
     game->north.height = game->north.texture->height;
-    game->north.pixels = (uint32_t *)game->north.texture->pixels;  // Direct access (MLX is RGBA)
-
-    // Repeat for south
+    game->north.pixels = (uint32_t *)game->north.texture->pixels;
+    //south
     game->south.texture = mlx_load_png("./Sprites/Texture_Side1.png");
     if (!game->south.texture)
     {
@@ -37,7 +36,10 @@ void load_all_textures(t_game *game)
     game->south.width = game->south.texture->width;
     game->south.height = game->south.texture->height;
     game->south.pixels = (uint32_t *)game->south.texture->pixels;
+}
 
+void load_WE_EA_textures(t_game *game)
+{
     // East
     game->east.texture = mlx_load_png("./Sprites/Texture_Side1.png");
     if (!game->east.texture)
@@ -48,7 +50,6 @@ void load_all_textures(t_game *game)
     game->east.width = game->east.texture->width;
     game->east.height = game->east.texture->height;
     game->east.pixels = (uint32_t *)game->east.texture->pixels;
-
     // West
     game->west.texture = mlx_load_png("./Sprites/Texture_Side1.png");
     if (!game->west.texture)
@@ -59,4 +60,9 @@ void load_all_textures(t_game *game)
     game->west.width = game->west.texture->width;
     game->west.height = game->west.texture->height;
     game->west.pixels = (uint32_t *)game->west.texture->pixels;
+}
+void	load_all_textures(t_game *game)
+{
+    load_NO_SO_textures(game);
+    load_WE_EA_textures(game);
 }

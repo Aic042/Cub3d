@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2025/12/03 12:43:12 by root             ###   ########.fr       */
+/*   Updated: 2025/12/04 08:24:43 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,15 @@ typedef struct s_game
 	uint32_t	floor_color;
 }	t_game;
 
+
+//			Rays! 🍊
+void	calc_ray_dir(t_ray *r, int ray_id, int num_rays, t_player *p);
+void	init_dda(t_ray *r, t_player *p);
+t_texture	*select_wall_texture(t_game *g, t_ray *r);
+void	calc_wall_params(t_ray *r, t_player *p, t_game *g, t_texture **tex);
+void	draw_ray_column(t_game *g, t_ray *r, t_texture *tex, int x);
+
+//
 void	ft_my_hook(mlx_key_data_t keydata, void	*param);
 bool touch(t_game *game, float px, float py);
 int		player_case(int x, int y, char **map);

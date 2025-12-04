@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:18:14 by root              #+#    #+#             */
-/*   Updated: 2025/12/02 19:50:55 by root             ###   ########.fr       */
+/*   Updated: 2025/12/04 08:17:51 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool touch(t_game *game, float px, float py)
     int x = (int)(px / TILE);
     int y = (int)(py / TILE);
     if (x < 0 || x >= game->size_x || y < 0 || y >= game->size_y)
-        return (true);  // Out of bounds = wall
+        return (true); 
     if (game->map[y][x] == '1')
         return (true);
     return (false);
