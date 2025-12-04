@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:32:02 by root              #+#    #+#             */
-/*   Updated: 2025/12/02 14:01:27 by root             ###   ########.fr       */
+/*   Updated: 2025/12/04 14:02:31 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_player(t_player *player)
 	player->x = 0;
 	player->y = 0;
     player->angle = 0;
-    player->facing = 0;
+    player->facing = '\0';
     player->left_rotate = false;
     player->right_rotate = false;
 }

@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2025/12/04 08:21:53 by root             ###   ########.fr       */
+/*   Updated: 2025/12/04 20:36:12 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,26 +58,26 @@ void draw_minimap(t_game *g)
 	draw_square(ppx - 2, ppy - 2, 4, 0xFF0000FF, g);
 }
 
-void	draw_cleaner(t_game *game)
+void draw_cleaner(t_game *game)
 {
-	int y = 0;
-	int x;
+    int y = 0;
+    int x;
 
-	game->ceiling_color = 0x87CEEBFF;  // Sky blue con alpha
-	game->floor_color   = 0x00000000;  // Gris oscuro con alpha
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			if (y < HEIGHT / 2)
-				pixel_placer(x, y, game->ceiling_color, game);
-			else
-				pixel_placer(x, y, game->floor_color, game);
-			x++;
-		}
-		y++;
-	}
+    game->ceiling_color = 0x708090FF;  // Cielo azul claro (perfecto)
+    game->floor_color   = 0x4E342EFF;  // Marrón tierra bonito
+    while (y < HEIGHT)
+    {
+        x = 0;
+        while (x < WIDTH)
+        {
+            if (y < HEIGHT / 2)
+                pixel_placer(x, y, game->ceiling_color, game);
+            else
+                pixel_placer(x, y, game->floor_color, game);
+            x++;
+        }
+        y++;
+    }
 }
 
 void	perform_dda(t_ray *r, t_game *g)
@@ -109,7 +109,7 @@ void	draw_fov(t_game *g, t_player *p)
 	int		num_rays;
 
 	num_rays = WIDTH / 1;
-
+//dividir por un numero superior a 1 puede dividir la pantalla de derecha a iquierda!
 	ray = 0;
 	while (ray < num_rays)
 	{
@@ -144,7 +144,7 @@ void	setup_player_spawn(t_game *game)
 
 	if (!game->map)
 	{
-		printf("Error: Invalid map or no player found\n");
+		printf("Error: Error al spawnear\n");
 		mlx_terminate(game->mlx);
 		free(game);
 		exit(EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 20:43:37 by sbolivar          #+#    #+#             */
-/*   Updated: 2025/12/04 08:18:52 by root             ###   ########.fr       */
+/*   Updated: 2025/12/04 14:03:38 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int check_cases(int *x, int y, char **map, t_player *player) {
 			if (!check) {
 				player->facing = map[y][*x];
 				map[y][*x] = '0';
-				player->potition_x = y;
-				player->potition_y = *x;
+				player->potition_x = *x;   // columna → X
+				player->potition_y = y;    // fila    → Y
 			} else {
 				return (1);
 			}
