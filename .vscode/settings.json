@@ -10,5 +10,5 @@
 		"system_error": "c",
 		"cstdlib": "c"
 	},
-	"cmake.sourceDirectory": "/root/42projects/Cursus/Cub3d_antiguo/lib/MLX42"
+	"cmake.sourceDirectory": "/home/aingunza/Cub3d/lib/MLX42"
 }

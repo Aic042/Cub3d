@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2025/12/04 08:24:43 by root             ###   ########.fr       */
+/*   Updated: 2025/12/05 11:35:23 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,4 +133,7 @@ void	init_game(t_game *game);
 void	draw_square(int x, int y, int size, uint32_t color, t_game *game);
 float	distance(float x, float y);
 void	load_all_textures(t_game *game);
+
+int	ft_validate_file(char	*map_path);
+
 #endif
