@@ -6,25 +6,13 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 15:22:49 by sbolivar          #+#    #+#             */
-/*   Updated: 2025/12/05 11:31:06 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/12/05 11:47:08 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
 
-int	ft_validate_file(char	*map_path)
-{
-	char	*file;
-
-	file = ft_strrchr(map_path, '.');
-	if (file == NULL || ft_strcmp(file, ".cub") != 0)
-	{
-		ft_printf("Error de mapa!");
-		return (0);
-	}
-	return (1);
-}
 //By me ^^
 
 int		get_y(int size_y)
@@ -32,7 +20,7 @@ int		get_y(int size_y)
 	int	fd;
 	char	*temp;
 
-	fd = open("src/read_error.txt", O_RDONLY);
+	fd = open("src/read_error.cub", O_RDONLY);
 	if (fd == -1)
 	{
 		perror("Error al abrir el archivo");
@@ -52,7 +40,7 @@ void	get_sizes(t_game *game)
 	int	fd;
 	char	*temp;
 
-	fd = open("src/read_error.txt", O_RDONLY);
+	fd = open("src/read_error.cub", O_RDONLY);
 	if (fd == -1)
 	{
 		perror("Error al abrir el archivo");
@@ -89,7 +77,7 @@ void	get_map_utils(t_game  *game)
 	char	*temp;
 
 	i = 0;
-	fd = open("src/read_error.txt", O_RDONLY);
+	fd = open("src/read_error.cub", O_RDONLY);
 	if (fd == -1)
 	{
 		perror("Error al abrir el archivo");
