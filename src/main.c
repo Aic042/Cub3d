@@ -6,7 +6,7 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2025/12/05 11:38:22 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/12/05 12:45:49 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,17 +170,23 @@ void setup_player_spawn(t_game *game)
     game->player.angle = angle;
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_game		*game;
 	t_player	*player;
 
+	(void)argc;
+	(void)argv;
+	// if(argc > 2)
+	// 	return(printf("error con argc\n"), -1);
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (EXIT_FAILURE);
 	game->map = get_map(game);
 	player = &game->player;
 	(void)player;
+	// if(!ft_validate_file(argv[2]))
+	// 	return(-1);
 	init_game(game);
 	init_player(&game->player);
 	load_all_textures(game);
