@@ -3,21 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 15:22:49 by sbolivar          #+#    #+#             */
-/*   Updated: 2025/12/16 11:55:12 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/12/16 12:16:33 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-
-//By me ^^
-
-int		get_y(int size_y, char *map)
+int	get_y(int size_y, char *map)
 {
-	int	fd;
+	int		fd;
 	char	*temp;
 
 	fd = open(map, O_RDONLY);
@@ -37,7 +34,7 @@ int		get_y(int size_y, char *map)
 
 void	get_sizes(t_game *game)
 {
-	int	fd;
+	int		fd;
 	char	*temp;
 
 	fd = open(game->select_map, O_RDONLY);
@@ -70,9 +67,9 @@ char	*give_map_line(char *map, char *temp)
 	return (map);
 }
 
-void	get_map_utils(t_game  *game)
+void	get_map_utils(t_game *game)
 {
-	int	fd;
+	int		fd;
 	int		i;
 	char	*temp;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2025/12/11 18:57:14 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/12/16 12:26:10 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,48 +38,48 @@ void	pixel_placer(int x, int y, uint32_t color, t_game *game)
 
 void draw_minimap(t_game *g)
 {
-	    for (int my = 0; my < g->size_y; my++)
-    {
-        for (int mx = 0; mx < g->size_x; mx++)
-        {
-            int px = MM_OFFSET + mx * MM_TILE;
-            int py = MM_OFFSET + my * MM_TILE;
-            char cell = g->map[my][mx];
-            if (cell == '1')
-                draw_square(px, py, MM_TILE, 0xFFFFFFFF, g);
-            if (cell == '0')
-                draw_square(px, py, MM_TILE, 0x000000FF, g);
-        }
+		for (int my = 0; my < g->size_y; my++)
+	{
+		for (int mx = 0; mx < g->size_x; mx++)
+		{
+			int px = MM_OFFSET + mx * MM_TILE;
+			int py = MM_OFFSET + my * MM_TILE;
+			char cell = g->map[my][mx];
+			if (cell == '1')
+				draw_square(px, py, MM_TILE, 0xFFFFFFFF, g);
+			if (cell == '0')
+				draw_square(px, py, MM_TILE, 0x000000FF, g);
+		}
 	}
-    float mini_x = (g->player.x / TILE) * MM_TILE;
+	float mini_x = (g->player.x / TILE) * MM_TILE;
 	float mini_y = (g->player.y / TILE) * MM_TILE;
 
 	int ppx = MM_OFFSET + mini_x;
 	int ppy = MM_OFFSET + mini_y;
 
-    draw_square(ppx - 2, ppy - 2, 4, 0xFF0000FF, g);
+	draw_square(ppx - 2, ppy - 2, 4, 0xFF0000FF, g);
 }
 
 void draw_cleaner(t_game *game)
 {
-    int y = 0;
-    int x;
+	int y = 0;
+	int x;
 
-    game->ceiling_color = 0x708090FF;  // Cielo azul claro (perfecto)
-    game->floor_color   = 0x4E342EFF;  // Marrón tierra bonito
-    while (y < HEIGHT)
-    {
-        x = 0;
-        while (x < WIDTH)
-        {
-            if (y < HEIGHT / 2)
-                pixel_placer(x, y, game->ceiling_color, game);
-            else
-                pixel_placer(x, y, game->floor_color, game);
-            x++;
-        }
-        y++;
-    }
+	game->ceiling_color = 0x708090FF;  // Cielo azul claro (perfecto)
+	game->floor_color   = 0x4E342EFF;  // Marrón tierra bonito
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			if (y < HEIGHT / 2)
+				pixel_placer(x, y, game->ceiling_color, game);
+			else
+				pixel_placer(x, y, game->floor_color, game);
+			x++;
+		}
+		y++;
+	}
 }
 
 void	perform_dda(t_ray *r, t_game *g)
@@ -140,37 +140,37 @@ void	render(void *param)
 
 void setup_player_spawn(t_game *game)
 {
-    float pos_x;
-    float pos_y;
-    float angle;
+	float pos_x;
+	float pos_y;
+	float angle;
 
-    if (!game->map)
-    {
-        printf("Error: mapa inválido o sin jugador\n");
-        mlx_terminate(game->mlx);
-        free(game);
-        exit(EXIT_FAILURE);
-    }
+	if (!game->map)
+	{
+		printf("Error: mapa inválido o sin jugador\n");
+		mlx_terminate(game->mlx);
+		free(game);
+		exit(EXIT_FAILURE);
+	}
 
-    pos_x = (float)game->player.potition_x + 0.5f;
-    pos_y = (float)game->player.potition_y + 0.5f;
+	pos_x = (float)game->player.potition_x + 0.5f;
+	pos_y = (float)game->player.potition_y + 0.5f;
 
-    game->player.x = pos_x * (float)TILE;
-    game->player.y = pos_y * (float)TILE;
+	game->player.x = pos_x * (float)TILE;
+	game->player.y = pos_y * (float)TILE;
 	game->move_x = game->player.x;
 	game->move_y = game->player.y;
-    if (game->player.facing == 'N')
-        angle = 3.0f * PI / 2.0f;
-    else if (game->player.facing == 'S')
-        angle = PI / 2.0f;
-    else if (game->player.facing == 'E')
-        angle = 0.0f;
-    else if (game->player.facing == 'W')
-        angle = PI;
-    else
-        angle = 0.0f;
+	if (game->player.facing == 'N')
+		angle = 3.0f * PI / 2.0f;
+	else if (game->player.facing == 'S')
+		angle = PI / 2.0f;
+	else if (game->player.facing == 'E')
+		angle = 0.0f;
+	else if (game->player.facing == 'W')
+		angle = PI;
+	else
+		angle = 0.0f;
 
-    game->player.angle = angle;
+	game->player.angle = angle;
 }
 
 int	main(int argc, char **argv)

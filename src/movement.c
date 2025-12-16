@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:59:39 by aingunza          #+#    #+#             */
-/*   Updated: 2025/11/28 16:23:46 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/12/16 12:18:40 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	vertical_keys(t_game *game, t_player *player, int speed)
 {
-	float new_x, new_y;
+	float	new_x;
+	float	new_y;
 
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 	{
@@ -40,7 +41,8 @@ void	vertical_keys(t_game *game, t_player *player, int speed)
 
 void	horizontal_keys(t_game *game, t_player *player, int speed)
 {
-	float new_x, new_y;
+	float	new_x;
+	float	new_y;
 
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 	{
