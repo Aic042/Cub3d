@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2025/12/05 11:35:23 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/12/11 17:32:38 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,14 @@ typedef struct s_game
 
 	mlx_t		*mlx;
 	mlx_image_t	*image;
+	char		*select_map;
 	char		**map;
+	char		**inf;
 	int			size_x;
 	int			size_y;
 	void		*win;
+	float		move_x;
+	float		move_y;
 	char		*pixel;
 	int			size_of_line;
 	int			bpp;

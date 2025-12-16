@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 15:22:49 by sbolivar          #+#    #+#             */
-/*   Updated: 2025/12/05 12:54:42 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/12/16 11:55:12 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 //By me ^^
 
-int		get_y(int size_y)
+int		get_y(int size_y, char *map)
 {
 	int	fd;
 	char	*temp;
 
-	fd = open("src/read_error.cub", O_RDONLY);
+	fd = open(map, O_RDONLY);
 	if (fd == -1)
 	{
 		perror("Error al abrir el archivo");
@@ -40,7 +40,7 @@ void	get_sizes(t_game *game)
 	int	fd;
 	char	*temp;
 
-	fd = open("src/read_error.cub", O_RDONLY);
+	fd = open(game->select_map, O_RDONLY);
 	if (fd == -1)
 	{
 		perror("Error al abrir el archivo");
@@ -53,7 +53,7 @@ void	get_sizes(t_game *game)
 		free(temp);
 	}
 	close(fd);
-	game->size_y = get_y(game->size_y);
+	game->size_y = get_y(game->size_y, game->select_map);
 	return ;
 }
 
@@ -77,7 +77,7 @@ void	get_map_utils(t_game  *game)
 	char	*temp;
 
 	i = 0;
-	fd = open("src/read_error.cub", O_RDONLY);
+	fd = open(game->select_map, O_RDONLY);
 	if (fd == -1)
 	{
 		perror("Error al abrir el archivo");
@@ -103,6 +103,7 @@ char	**get_map(t_game *game)
 
 	player = 0;
 	y = 0;
+	game->select_map = ft_strjoin("maps/", game->select_map);
 	get_sizes(game);
 	get_map_utils(game);
 	while (game->map[y])
@@ -117,6 +118,7 @@ char	**get_map(t_game *game)
 		}
 		y++;
 	}
+	printf("%s", game->map[1]);
 	if (!map_parse(game) && player == 1)
 		return (game->map);
 	return (NULL);

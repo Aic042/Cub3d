@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2025/12/05 12:45:49 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/12/11 18:57:14 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,26 @@ void	pixel_placer(int x, int y, uint32_t color, t_game *game)
 
 void draw_minimap(t_game *g)
 {
-	for (int my = 0; my < g->size_y; my++)
-	{
-		for (int mx = 0; mx < g->size_x; mx++)
-		{
-			int px = MM_OFFSET + mx * MM_TILE;
-			int py = MM_OFFSET + my * MM_TILE;
-			char cell = g->map[my][mx];
-			if (cell == '1')
-				draw_square(px, py, MM_TILE, 0xFFFFFFFF, g);     // pared
-			else if (cell == 'D')
-				draw_square(px, py, MM_TILE, 0x8080FFFF, g);     // puerta
-			else
-				draw_square(px, py, MM_TILE, 0x000000FF, g);     // suelo
-		}
+	    for (int my = 0; my < g->size_y; my++)
+    {
+        for (int mx = 0; mx < g->size_x; mx++)
+        {
+            int px = MM_OFFSET + mx * MM_TILE;
+            int py = MM_OFFSET + my * MM_TILE;
+            char cell = g->map[my][mx];
+            if (cell == '1')
+                draw_square(px, py, MM_TILE, 0xFFFFFFFF, g);
+            if (cell == '0')
+                draw_square(px, py, MM_TILE, 0x000000FF, g);
+        }
 	}
-	int ppx = MM_OFFSET + (int)(g->player.x * MM_TILE);
-	int ppy = MM_OFFSET + (int)(g->player.y * MM_TILE);
-	draw_square(ppx - 2, ppy - 2, 4, 0xFF0000FF, g);
+    float mini_x = (g->player.x / TILE) * MM_TILE;
+	float mini_y = (g->player.y / TILE) * MM_TILE;
+
+	int ppx = MM_OFFSET + mini_x;
+	int ppy = MM_OFFSET + mini_y;
+
+    draw_square(ppx - 2, ppy - 2, 4, 0xFF0000FF, g);
 }
 
 void draw_cleaner(t_game *game)
@@ -155,7 +157,8 @@ void setup_player_spawn(t_game *game)
 
     game->player.x = pos_x * (float)TILE;
     game->player.y = pos_y * (float)TILE;
-
+	game->move_x = game->player.x;
+	game->move_y = game->player.y;
     if (game->player.facing == 'N')
         angle = 3.0f * PI / 2.0f;
     else if (game->player.facing == 'S')
@@ -177,16 +180,15 @@ int	main(int argc, char **argv)
 
 	(void)argc;
 	(void)argv;
-	// if(argc > 2)
-	// 	return(printf("error con argc\n"), -1);
+	if(argc > 2 || !ft_validate_file(argv[1]))
+		return(printf("error con argc\n"), -1);
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (EXIT_FAILURE);
+	game->select_map = argv[1];
 	game->map = get_map(game);
 	player = &game->player;
 	(void)player;
-	// if(!ft_validate_file(argv[2]))
-	// 	return(-1);
 	init_game(game);
 	init_player(&game->player);
 	load_all_textures(game);

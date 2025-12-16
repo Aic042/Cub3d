@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 12:12:20 by sbolivar          #+#    #+#             */
-/*   Updated: 2025/11/24 15:01:43 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:40:27 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,17 @@ int	space_case(int x, int y, char **map)
 	int	i;
 
 	i = 0;
-	if (map[y][x - 1] == ' ' || map[y][x - 1] == '1' || map[y][x - 1] == '\t')
+	if (map[y][x - 1] == '0' || map[y][x - 1] == '1' || map[y][x - 1] == '\n' ||
+		map[y][x - 1] == ' ' || map[y][x - 1] == '\t' || map[y][x - 1] == '\0')
 		i++;
-	if (map[y][x + 1] == ' ' || map[y][x + 1] == '1' || map[y][x + 1] == '\t')
+	if (map[y][x + 1] == '0' || map[y][x + 1] == '1' || map[y][x + 1] == '\n' ||
+		map[y][x + 1] == ' ' || map[y][x + 1] == '\t' || map[y][x + 1] == '\0')
 		i++;
-	if (map[y - 1][x] == ' ' || map[y - 1][x] == '1' || map[y - 1][x] == '\t')
+	if (map[y - 1][x] == '0' || map[y - 1][x] == '1' || map[y - 1][x] == '\n' ||
+		map[y - 1][x] == ' ' || map[y - 1][x] == '\t' || map[y - 1][x] == '\0')
 		i++;
-	if (map[y + 1][x] == ' ' || map[y + 1][x] == '1' || map[y + 1][x] == '\t')
+	if (map[y + 1][x] == '0' || map[y + 1][x] == '1' || map[y + 1][x] == '\n' ||
+		map[y + 1][x] == ' ' || map[y + 1][x] == '\t' || map[y + 1][x] == '\0')
 		i++;
 	if (i == 4)
 		return (0);

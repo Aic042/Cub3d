@@ -1,21 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_vars.c                                        :+:      :+:    :+:   */
+/*   read_textures_pase.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 11:03:40 by sbolivar          #+#    #+#             */
-/*   Updated: 2025/12/09 14:01:24 by sbolivar         ###   ########.fr       */
+/*   Created: 2025/12/11 16:40:21 by sbolivar          #+#    #+#             */
+/*   Updated: 2025/12/11 16:40:47 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	init_vars(t_game *game, t_player *player)
-{
-	player->x = 0;
-	player->y = 0;
-	game->size_x = 0;
-	game->size_y = 0;
-}
+	
