@@ -6,7 +6,7 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2025/12/16 12:26:10 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/12/16 12:39:05 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	pixel_placer(int x, int y, uint32_t color, t_game *game)
 	uint8_t	a;
 
 	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
-		return;
+		return (-1);
 	i = y * game->size_of_line + x * 4;
 	if (i + 3 >= WIDTH * HEIGHT * 4)
-		return;
+		return (-1);
 	r = (color >> 24) & 0xFF;
 	g = (color >> 16) & 0xFF;
 	b = (color >> 8) & 0xFF;
@@ -35,38 +35,47 @@ void	pixel_placer(int x, int y, uint32_t color, t_game *game)
 	game->pixel[i + 3] = a;
 }
 
-
-void draw_minimap(t_game *g)
+void	draw_minimap(t_game *g)
 {
-		for (int my = 0; my < g->size_y; my++)
+	int		px = 0;
+	int		py = 0;
+	int		my = 0;
+	int		mx = 0;
+	float	mini_x = 0;
+	float	mini_y = 0;
+	int		ppx = 0;
+	int		ppy = 0;
+	char	cell;
+	while (my < g->size_y)
 	{
-		for (int mx = 0; mx < g->size_x; mx++)
+		while (mx < g->size_x)
 		{
-			int px = MM_OFFSET + mx * MM_TILE;
-			int py = MM_OFFSET + my * MM_TILE;
-			char cell = g->map[my][mx];
+			px = MM_OFFSET + mx * MM_TILE;
+			py = MM_OFFSET + my * MM_TILE;
+			cell = g->map[my][mx];
 			if (cell == '1')
 				draw_square(px, py, MM_TILE, 0xFFFFFFFF, g);
 			if (cell == '0')
 				draw_square(px, py, MM_TILE, 0x000000FF, g);
+			mx++;
 		}
+		my++;
 	}
-	float mini_x = (g->player.x / TILE) * MM_TILE;
-	float mini_y = (g->player.y / TILE) * MM_TILE;
-
-	int ppx = MM_OFFSET + mini_x;
-	int ppy = MM_OFFSET + mini_y;
-
+	mini_x = (g->player.x / TILE) * MM_TILE;
+	mini_y = (g->player.y / TILE) * MM_TILE;
+	ppx = MM_OFFSET + mini_x;
+	ppy = MM_OFFSET + mini_y;
 	draw_square(ppx - 2, ppy - 2, 4, 0xFF0000FF, g);
 }
 
-void draw_cleaner(t_game *game)
+void	draw_cleaner(t_game *game)
 {
-	int y = 0;
-	int x;
+	int	y;
+	int	x;
 
-	game->ceiling_color = 0x708090FF;  // Cielo azul claro (perfecto)
-	game->floor_color   = 0x4E342EFF;  // Marrón tierra bonito
+	y = 0;
+	game->ceiling_color = 0x708090FF;
+	game->floor_color   = 0x4E342EFF;
 	while (y < HEIGHT)
 	{
 		x = 0;
@@ -99,19 +108,18 @@ void	perform_dda(t_ray *r, t_game *g)
 			r->side = 1;
 		}
 		if (touch(g, r->map_x * TILE, r->map_y * TILE))
-			break;
+			break ;
 	}
 }
 
 void	draw_fov(t_game *g, t_player *p)
 {
-	t_ray	r;
-	t_texture *tex;
-	int		ray;
-	int		num_rays;
+	t_ray		r;
+	t_texture	*tex;
+	int			ray;
+	int			num_rays;
 
 	num_rays = WIDTH / 1;
-//dividir por un numero superior a 1 puede dividir la pantalla de derecha a iquierda!
 	ray = 0;
 	while (ray < num_rays)
 	{
@@ -124,25 +132,21 @@ void	draw_fov(t_game *g, t_player *p)
 	}
 }
 
-//probando el mini mapa
 void	render(void *param)
 {
-	t_game *game;
+	t_game	*game;
+
 	game = (t_game *)param;
-	// Clear the screen
 	draw_cleaner(game);
-	// Draw the map
-	// // Draw the player
 	draw_fov(game, &game->player);
-	// map_drawer(game);
 	draw_minimap(game);
 }
 
-void setup_player_spawn(t_game *game)
+void	setup_player_spawn(t_game *game)
 {
-	float pos_x;
-	float pos_y;
-	float angle;
+	float	pos_x;
+	float	pos_y;
+	float	angle;
 
 	if (!game->map)
 	{
@@ -151,10 +155,8 @@ void setup_player_spawn(t_game *game)
 		free(game);
 		exit(EXIT_FAILURE);
 	}
-
 	pos_x = (float)game->player.potition_x + 0.5f;
 	pos_y = (float)game->player.potition_y + 0.5f;
-
 	game->player.x = pos_x * (float)TILE;
 	game->player.y = pos_y * (float)TILE;
 	game->move_x = game->player.x;
@@ -169,7 +171,6 @@ void setup_player_spawn(t_game *game)
 		angle = PI;
 	else
 		angle = 0.0f;
-
 	game->player.angle = angle;
 }
 
@@ -180,8 +181,8 @@ int	main(int argc, char **argv)
 
 	(void)argc;
 	(void)argv;
-	if(argc > 2 || !ft_validate_file(argv[1]))
-		return(printf("error con argc\n"), -1);
+	if (argc > 2 || !ft_validate_file(argv[1]))
+		return (printf("error con argc\n"), -1);
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (EXIT_FAILURE);
@@ -196,7 +197,6 @@ int	main(int argc, char **argv)
 	mlx_key_hook(game->mlx, &ft_my_hook, game);
 	mlx_loop_hook(game->mlx, &render, game);
 	mlx_loop(game->mlx);
-
 	free(game);
 	return (EXIT_SUCCESS);
 }
