@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2025/12/11 17:32:38 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/12/17 15:46:29 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct s_game
 	mlx_image_t	*image;
 	char		*select_map;
 	char		**map;
+	char		**paths;
 	char		**inf;
 	int			size_x;
 	int			size_y;
@@ -113,10 +114,14 @@ void	calc_wall_params(t_ray *r, t_player *p, t_game *g, t_texture **tex);
 void	draw_ray_column(t_game *g, t_ray *r, t_texture *tex, int x);
 
 //
+void	get_text(int fd, char **str, t_game *game, int i);
+char	*give_map_line(char *map, char *temp);
 void	ft_my_hook(mlx_key_data_t keydata, void	*param);
-bool touch(t_game *game, float px, float py);
+bool 	touch(t_game *game, float px, float py);
 int		player_case(int x, int y, char **map);
 int		zero_case(int x, int y, char **map);
+void	get_paths(t_game *game);
+void	special_strlcpy(char *dst, char *src, size_t size, size_t j);
 int		wall_case(int x, int y, char **map);
 int		space_case(int x, int y, char **map);
 void	init_player(t_player *player);
@@ -124,7 +129,7 @@ void	init_vars(t_game *game, t_player *player);
 void	map_drawer(t_game *game);
 int		ft_strlen_strings(char **av);
 char	**get_map(t_game *game);
-int		map_parse(t_game *game);
+int		map_parse(t_game *game, int i, int y);
 int		check_cases(int	*x, int y, char **map, t_player *player);
 int		check_walls(char **map, t_player *player);
 void	init_game(t_game *game);

@@ -1,3 +1,9 @@
+NO ./Sprites/Texture_Side1.png
+SO ./Sprites/Texture_Side1.png
+WE ./Sprites/Texture_Side1.png
+EA ./Sprites/Texture_Side1.png
+F 220,100,0
+C 225,30,0
 111111 111111
 1000011101001
 1100011000011

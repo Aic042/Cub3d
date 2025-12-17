@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 15:22:49 by sbolivar          #+#    #+#             */
-/*   Updated: 2025/12/16 11:55:12 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/12/17 15:46:40 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 //By me ^^
 
-int		get_y(int size_y, char *map)
+int	get_y(int size_y, char *map)
 {
-	int	fd;
+	int		fd;
 	char	*temp;
 
 	fd = open(map, O_RDONLY);
@@ -26,18 +26,20 @@ int		get_y(int size_y, char *map)
 		perror("Error al abrir el archivo");
 		return (0);
 	}
-	while ((temp = get_next_line(fd)) != NULL)
+	temp = get_next_line(fd);
+	while (temp != NULL)
 	{
 		size_y++;
 		free(temp);
+		temp = get_next_line(fd);
 	}
 	close(fd);
-	return (size_y);
+	return (size_y - 6);
 }
 
 void	get_sizes(t_game *game)
 {
-	int	fd;
+	int		fd;
 	char	*temp;
 
 	fd = open(game->select_map, O_RDONLY);
@@ -46,11 +48,13 @@ void	get_sizes(t_game *game)
 		perror("Error al abrir el archivo");
 		return ;
 	}
-	while ((temp = get_next_line(fd)))
+	temp = get_next_line(fd);
+	while (temp)
 	{
 		if (game->size_x < (int)ft_strlen(temp))
 			game->size_x = ft_strlen(temp);
 		free(temp);
+		temp = get_next_line(fd);
 	}
 	close(fd);
 	game->size_y = get_y(game->size_y, game->select_map);
@@ -70,13 +74,10 @@ char	*give_map_line(char *map, char *temp)
 	return (map);
 }
 
-void	get_map_utils(t_game  *game)
+void	get_map_utils(t_game *game)
 {
 	int	fd;
-	int		i;
-	char	*temp;
 
-	i = 0;
 	fd = open(game->select_map, O_RDONLY);
 	if (fd == -1)
 	{
@@ -84,13 +85,9 @@ void	get_map_utils(t_game  *game)
 		return ;
 	}
 	game->map = ft_calloc(sizeof(char *), game->size_y + 1);
-	while ((temp = get_next_line(fd)) != NULL)
-	{
-		game->map[i] = ft_calloc(sizeof(char *), game->size_x + 1);
-		game->map[i] = give_map_line(game->map[i], temp);
-		free(temp);
-		i++;
-	}
+	game->inf = ft_calloc(sizeof(char *), 7);
+	get_text(fd, game->inf, game, 0);
+	get_text(fd, game->map, game, 1);
 	close(fd);
 	return ;
 }
@@ -106,6 +103,7 @@ char	**get_map(t_game *game)
 	game->select_map = ft_strjoin("maps/", game->select_map);
 	get_sizes(game);
 	get_map_utils(game);
+	get_paths(game);
 	while (game->map[y])
 	{
 		x = 0;
@@ -118,8 +116,7 @@ char	**get_map(t_game *game)
 		}
 		y++;
 	}
-	printf("%s", game->map[1]);
-	if (!map_parse(game) && player == 1)
+	if (!map_parse(game, 0, 0) && player == 1)
 		return (game->map);
 	return (NULL);
 }
