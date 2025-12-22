@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 08:19:52 by root              #+#    #+#             */
-/*   Updated: 2025/12/16 12:12:08 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/12/18 17:14:27 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,26 +50,7 @@ void	init_dda(t_ray *r, t_player *p)
 		inv_y = 1 / r->dir_y;
 		r->delta_y = fabs(inv_y);
 	}
-	if (r->dir_x < 0)
-	{
-		r->step_x = -1;
-		r->side_x = (pos_x - r->map_x) * r->delta_x;
-	}
-	else
-	{
-		r->step_x = 1;
-		r->side_x = (r->map_x + 1.0f - pos_x) * r->delta_x;
-	}
-	if (r->dir_y < 0)
-	{
-		r->step_y = -1;
-		r->side_y = (pos_y - r->map_y) * r->delta_y;
-	}
-	else
-	{
-		r->step_y = 1;
-		r->side_y = (r->map_y + 1.0f - pos_y) * r->delta_y;
-	}
+	init_dda_utils(r, p, pos_x, pos_y);
 }
 
 t_texture	*select_wall_texture(t_game *g, t_ray *r)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:59:39 by aingunza          #+#    #+#             */
-/*   Updated: 2025/12/16 12:30:47 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/12/18 16:24:11 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_my_hook(mlx_key_data_t keydata, void *param)
 
 // int	check_collisions(t_game *game, t_player *player)
 // {
-// 	if (player->x == )
+// 	if(player->x == )
 // }
 // ft_stop_music();
 

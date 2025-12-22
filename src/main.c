@@ -3,93 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2025/12/16 12:39:05 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/12/22 13:29:29 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-void	pixel_placer(int x, int y, uint32_t color, t_game *game)
-{
-	int		i;
-	uint8_t	r;
-	uint8_t	g;
-	uint8_t	b;
-	uint8_t	a;
-
-	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
-		return (-1);
-	i = y * game->size_of_line + x * 4;
-	if (i + 3 >= WIDTH * HEIGHT * 4)
-		return (-1);
-	r = (color >> 24) & 0xFF;
-	g = (color >> 16) & 0xFF;
-	b = (color >> 8) & 0xFF;
-	a = color & 0xFF;
-	game->pixel[i] = r;
-	game->pixel[i + 1] = g;
-	game->pixel[i + 2] = b;
-	game->pixel[i + 3] = a;
-}
-
-void	draw_minimap(t_game *g)
-{
-	int		px = 0;
-	int		py = 0;
-	int		my = 0;
-	int		mx = 0;
-	float	mini_x = 0;
-	float	mini_y = 0;
-	int		ppx = 0;
-	int		ppy = 0;
-	char	cell;
-	while (my < g->size_y)
-	{
-		while (mx < g->size_x)
-		{
-			px = MM_OFFSET + mx * MM_TILE;
-			py = MM_OFFSET + my * MM_TILE;
-			cell = g->map[my][mx];
-			if (cell == '1')
-				draw_square(px, py, MM_TILE, 0xFFFFFFFF, g);
-			if (cell == '0')
-				draw_square(px, py, MM_TILE, 0x000000FF, g);
-			mx++;
-		}
-		my++;
-	}
-	mini_x = (g->player.x / TILE) * MM_TILE;
-	mini_y = (g->player.y / TILE) * MM_TILE;
-	ppx = MM_OFFSET + mini_x;
-	ppy = MM_OFFSET + mini_y;
-	draw_square(ppx - 2, ppy - 2, 4, 0xFF0000FF, g);
-}
-
-void	draw_cleaner(t_game *game)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	game->ceiling_color = 0x708090FF;
-	game->floor_color   = 0x4E342EFF;
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			if (y < HEIGHT / 2)
-				pixel_placer(x, y, game->ceiling_color, game);
-			else
-				pixel_placer(x, y, game->floor_color, game);
-			x++;
-		}
-		y++;
-	}
-}
 
 void	perform_dda(t_ray *r, t_game *g)
 {
@@ -139,15 +60,11 @@ void	render(void *param)
 	game = (t_game *)param;
 	draw_cleaner(game);
 	draw_fov(game, &game->player);
-	draw_minimap(game);
+	draw_minimap(game, 0, 0, 0);
 }
 
-void	setup_player_spawn(t_game *game)
+void	setup_player_spawn(t_game *game, float angle, float pos_x, float pos_y)
 {
-	float	pos_x;
-	float	pos_y;
-	float	angle;
-
 	if (!game->map)
 	{
 		printf("Error: mapa inválido o sin jugador\n");
@@ -179,9 +96,9 @@ int	main(int argc, char **argv)
 	t_game		*game;
 	t_player	*player;
 
-	(void)argc;
-	(void)argv;
-	if (argc > 2 || !ft_validate_file(argv[1]))
+	if (argc != 2)
+		return (printf("error con argc\n"), -1);
+	if (!ft_validate_file(argv[1]))
 		return (printf("error con argc\n"), -1);
 	game = malloc(sizeof(t_game));
 	if (!game)
@@ -193,10 +110,10 @@ int	main(int argc, char **argv)
 	init_game(game);
 	init_player(&game->player);
 	load_all_textures(game);
-	setup_player_spawn(game);
+	setup_player_spawn(game, 0, 0, 0);
 	mlx_key_hook(game->mlx, &ft_my_hook, game);
 	mlx_loop_hook(game->mlx, &render, game);
 	mlx_loop(game->mlx);
-	free(game);
+	free_game(game);
 	return (EXIT_SUCCESS);
 }
