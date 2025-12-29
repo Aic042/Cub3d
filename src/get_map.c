@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 15:22:49 by sbolivar          #+#    #+#             */
-/*   Updated: 2025/12/18 14:11:10 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/12/29 12:52:55 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	get_y(int size_y, char *map)
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Error al abrir el archivo");
+		perror("Error al abrir el archivo Get y");
 		return (0);
 	}
 	temp = get_next_line(fd);
@@ -42,7 +42,7 @@ void	get_sizes(t_game *game)
 	fd = open(game->select_map, O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Error al abrir el archivo");
+		perror("Error al abrir el archivo Get Sizes");
 		return ;
 	}
 	temp = get_next_line(fd);
@@ -78,7 +78,7 @@ void	get_map_utils(t_game *game)
 	fd = open(game->select_map, O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Error al abrir el archivo");
+		perror("Error al abrir el archivo get_map_utils");
 		return ;
 	}
 	game->map = ft_calloc(sizeof(char *), game->size_y + 1);

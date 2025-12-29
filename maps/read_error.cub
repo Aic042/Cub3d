@@ -3,7 +3,7 @@ SO ./Sprites/Texture_Side1.png
 WE ./Sprites/Texture_Side1.png
 EA ./Sprites/Texture_Side1.png
 F 78,52,46
-C 78,52,466
+C 78,52,46
 111111 111111
 1000011101001
 11000110000111111111111

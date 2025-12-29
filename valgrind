@@ -1,0 +1,83 @@
+aingunza@c2r3s6 ~/Cub3d_on % valgrind --track-origins=yes -s --leak-check=full --show-leak-kinds=all ./cub3d New_map.cub
+==589265== Memcheck, a memory error detector
+==589265== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==589265== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==589265== Command: ./cub3d New_map.cub
+==589265== 
+Error al abrir el archivo Get Sizes: No such file or directory
+Error al abrir el archivo get_map_utils: No such file or directory
+==589265== Use of uninitialised value of size 8
+==589265==    at 0x4042BE: get_paths (parsing.c:56)
+==589265==    by 0x402CE3: get_map (get_map.c:103)
+==589265==    by 0x403126: main (main.c:107)
+==589265==  Uninitialised value was created by a heap allocation
+==589265==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==589265==    by 0x40310A: main (main.c:103)
+==589265== 
+==589265== Invalid read of size 8
+==589265==    at 0x4042BE: get_paths (parsing.c:56)
+==589265==    by 0x402CE3: get_map (get_map.c:103)
+==589265==    by 0x403126: main (main.c:107)
+==589265==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==589265== 
+==589265== 
+==589265== Process terminating with default action of signal 11 (SIGSEGV)
+==589265==  Access not within mapped region at address 0x0
+==589265==    at 0x4042BE: get_paths (parsing.c:56)
+==589265==    by 0x402CE3: get_map (get_map.c:103)
+==589265==    by 0x403126: main (main.c:107)
+==589265==  If you believe this happened as a result of a stack
+==589265==  overflow in your program's main thread (unlikely but
+==589265==  possible), you can try to increase the size of the
+==589265==  main thread stack using the --main-stacksize= flag.
+==589265==  The main thread stack size used in this run was 8388608.
+==589265== 
+==589265== HEAP SUMMARY:
+==589265==     in use at exit: 289 bytes in 3 blocks
+==589265==   total heap usage: 7 allocs, 4 frees, 3,281 bytes allocated
+==589265== 
+==589265== 17 bytes in 1 blocks are still reachable in loss record 1 of 3
+==589265==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==589265==    by 0x404F88: ft_strjoin (in /home/aingunza/Cub3d_on/cub3d)
+==589265==    by 0x402CC7: get_map (get_map.c:100)
+==589265==    by 0x403126: main (main.c:107)
+==589265== 
+==589265== 32 bytes in 1 blocks are still reachable in loss record 2 of 3
+==589265==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==589265==    by 0x404EFE: ft_calloc (in /home/aingunza/Cub3d_on/cub3d)
+==589265==    by 0x4042A6: get_paths (parsing.c:51)
+==589265==    by 0x402CE3: get_map (get_map.c:103)
+==589265==    by 0x403126: main (main.c:107)
+==589265== 
+==589265== 240 bytes in 1 blocks are still reachable in loss record 3 of 3
+==589265==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==589265==    by 0x40310A: main (main.c:103)
+==589265== 
+==589265== LEAK SUMMARY:
+==589265==    definitely lost: 0 bytes in 0 blocks
+==589265==    indirectly lost: 0 bytes in 0 blocks
+==589265==      possibly lost: 0 bytes in 0 blocks
+==589265==    still reachable: 289 bytes in 3 blocks
+==589265==         suppressed: 0 bytes in 0 blocks
+==589265== 
+==589265== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==589265== 
+==589265== 1 errors in context 1 of 2:
+==589265== Invalid read of size 8
+==589265==    at 0x4042BE: get_paths (parsing.c:56)
+==589265==    by 0x402CE3: get_map (get_map.c:103)
+==589265==    by 0x403126: main (main.c:107)
+==589265==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==589265== 
+==589265== 
+==589265== 1 errors in context 2 of 2:
+==589265== Use of uninitialised value of size 8
+==589265==    at 0x4042BE: get_paths (parsing.c:56)
+==589265==    by 0x402CE3: get_map (get_map.c:103)
+==589265==    by 0x403126: main (main.c:107)
+==589265==  Uninitialised value was created by a heap allocation
+==589265==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==589265==    by 0x40310A: main (main.c:103)
+==589265== 
+==589265== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+zsh: segmentation fault (core dumped)  valgrind --track-origins=yes -s --leak-check=full --show-leak-kinds=all  
