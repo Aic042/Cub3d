@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2025/12/22 12:33:48 by sbolivar         ###   ########.fr       */
+/*   Updated: 2026/01/09 14:59:39 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void	init_player(t_player *player);
 void	init_vars(t_game *game, t_player *player);
 void	map_drawer(t_game *game);
 int		ft_strlen_strings(char **av);
-char	**get_map(t_game *game);
+char	**get_map(t_game *game, int y, int player);
 int		map_parse(t_game *game, int i, int y);
 int		check_cases(int	*x, int y, char **map, t_player *player);
 int		check_walls(char **map, t_player *player);

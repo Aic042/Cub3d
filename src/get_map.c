@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 15:22:49 by sbolivar          #+#    #+#             */
-/*   Updated: 2025/12/18 14:11:10 by sbolivar         ###   ########.fr       */
+/*   Updated: 2026/01/09 15:01:03 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,10 @@ void	get_map_utils(t_game *game)
 	return ;
 }
 
-char	**get_map(t_game *game)
+char	**get_map(t_game *game, int y, int player)
 {
-	int	y;
 	int	x;
-	int	player;
 
-	player = 0;
-	y = 0;
 	game->select_map = ft_strjoin("maps/", game->select_map);
 	get_sizes(game);
 	get_map_utils(game);
@@ -109,7 +105,9 @@ char	**get_map(t_game *game)
 			x++;
 			if (game->map[y][x] == 'N' || game->map[y][x] == 'S'
 			|| game->map[y][x] == 'E' || game->map[y][x] == 'W')
+			{
 				player++;
+			}
 		}
 		y++;
 	}

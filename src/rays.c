@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 08:19:52 by root              #+#    #+#             */
-/*   Updated: 2025/12/18 17:14:27 by sbolivar         ###   ########.fr       */
+/*   Updated: 2026/01/09 13:19:19 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	calc_ray_dir(t_ray *r, int ray_id, int num_rays, t_player *p)
 
 	f_id = (float)ray_id;
 	f_nr = (float)num_rays;
-	camera_x = 2.0f * f_id / f_nr - 1.0f;
+	camera_x = (2.0f * ray_id / (float)(num_rays - 1)) - 1.0f;
 	r->dir_x = cos(p->angle) - sin(p->angle) * camera_x * (PI / 6.0f);
 	r->dir_y = sin(p->angle) + cos(p->angle) * camera_x * (PI / 6.0f);
 	r->map_x = (int)(p->x / TILE);

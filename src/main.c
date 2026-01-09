@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2025/12/22 13:29:29 by sbolivar         ###   ########.fr       */
+/*   Updated: 2026/01/09 15:01:33 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	main(int argc, char **argv)
 	if (!game)
 		return (EXIT_FAILURE);
 	game->select_map = argv[1];
-	game->map = get_map(game);
+	game->map = get_map(game, 0, 0);
 	player = &game->player;
 	(void)player;
 	init_game(game);
