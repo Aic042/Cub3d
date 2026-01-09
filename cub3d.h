@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2025/12/17 15:46:29 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/12/22 12:33:48 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,9 @@ typedef struct s_game
 	char		**map;
 	char		**paths;
 	char		**inf;
+	int			x1;
+	int			x2;
+	int			size_color;
 	int			size_x;
 	int			size_y;
 	void		*win;
@@ -116,10 +119,12 @@ void	draw_ray_column(t_game *g, t_ray *r, t_texture *tex, int x);
 //
 void	get_text(int fd, char **str, t_game *game, int i);
 char	*give_map_line(char *map, char *temp);
+void	free_game(t_game *game);
 void	ft_my_hook(mlx_key_data_t keydata, void	*param);
 bool 	touch(t_game *game, float px, float py);
 int		player_case(int x, int y, char **map);
 int		zero_case(int x, int y, char **map);
+int 	parse_fc_line(const char *line, uint32_t *out_color);
 void	get_paths(t_game *game);
 void	special_strlcpy(char *dst, char *src, size_t size, size_t j);
 int		wall_case(int x, int y, char **map);
@@ -134,14 +139,19 @@ int		check_cases(int	*x, int y, char **map, t_player *player);
 int		check_walls(char **map, t_player *player);
 void	init_game(t_game *game);
 void	pixel_placer(int x, int y, uint32_t color, t_game *game);
-void	draw_square(int x, int y, int size, uint32_t color, t_game *game);
 // bool	touch(t_game *game, int player_x, int player_y);
+void	draw_minimap(t_game *g, int py, int px, int mx);
+void	draw_cleaner(t_game *game);
 void	init_player(t_player *player);
+void	pixel_placer(int x, int y, uint32_t color, t_game *game);
 void	map_drawer(t_game *game);
 void	init_game(t_game *game);
-void	draw_square(int x, int y, int size, uint32_t color, t_game *game);
+void	draw_square_1(int x, int y, uint32_t color, t_game *game);
 float	distance(float x, float y);
+void	draw_square_2(int x, int y, uint32_t color, t_game *game);
+void	draw_square_3(int x, int y, uint32_t color, t_game *game);
 void	load_all_textures(t_game *game);
+void	init_dda_utils(t_ray *r, t_player *p, float pos_x, float pos_y);
 
 int	ft_validate_file(char	*map_path);
 

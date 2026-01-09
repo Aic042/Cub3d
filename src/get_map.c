@@ -6,14 +6,11 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 15:22:49 by sbolivar          #+#    #+#             */
-/*   Updated: 2025/12/17 15:46:40 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/12/18 14:11:10 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-
-//By me ^^
 
 int	get_y(int size_y, char *map)
 {

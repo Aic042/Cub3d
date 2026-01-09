@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 08:19:52 by root              #+#    #+#             */
-/*   Updated: 2025/12/04 08:26:31 by root             ###   ########.fr       */
+/*   Updated: 2025/12/18 17:14:27 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,9 @@ void	calc_ray_dir(t_ray *r, int ray_id, int num_rays, t_player *p)
 
 	f_id = (float)ray_id;
 	f_nr = (float)num_rays;
-
 	camera_x = 2.0f * f_id / f_nr - 1.0f;
-
 	r->dir_x = cos(p->angle) - sin(p->angle) * camera_x * (PI / 6.0f);
 	r->dir_y = sin(p->angle) + cos(p->angle) * camera_x * (PI / 6.0f);
-
 	r->map_x = (int)(p->x / TILE);
 	r->map_y = (int)(p->y / TILE);
 }
@@ -39,7 +36,6 @@ void	init_dda(t_ray *r, t_player *p)
 
 	pos_x = p->x / TILE;
 	pos_y = p->y / TILE;
-
 	if (r->dir_x == 0)
 		r->delta_x = 1e30;
 	else
@@ -47,7 +43,6 @@ void	init_dda(t_ray *r, t_player *p)
 		inv_x = 1 / r->dir_x;
 		r->delta_x = fabs(inv_x);
 	}
-
 	if (r->dir_y == 0)
 		r->delta_y = 1e30;
 	else
@@ -55,28 +50,7 @@ void	init_dda(t_ray *r, t_player *p)
 		inv_y = 1 / r->dir_y;
 		r->delta_y = fabs(inv_y);
 	}
-
-	if (r->dir_x < 0)
-	{
-		r->step_x = -1;
-		r->side_x = (pos_x - r->map_x) * r->delta_x;
-	}
-	else
-	{
-		r->step_x = 1;
-		r->side_x = (r->map_x + 1.0f - pos_x) * r->delta_x;
-	}
-
-	if (r->dir_y < 0)
-	{
-		r->step_y = -1;
-		r->side_y = (pos_y - r->map_y) * r->delta_y;
-	}
-	else
-	{
-		r->step_y = 1;
-		r->side_y = (r->map_y + 1.0f - pos_y) * r->delta_y;
-	}
+	init_dda_utils(r, p, pos_x, pos_y);
 }
 
 t_texture	*select_wall_texture(t_game *g, t_ray *r)
@@ -121,16 +95,15 @@ void	calc_wall_params(t_ray *r, t_player *p, t_game *g, t_texture **tex)
 		wall_hit = pos_y + r->perp_dist * r->dir_y;
 	else
 		wall_hit = pos_x + r->perp_dist * r->dir_x;
-
 	r->wall_x = wall_hit - floor(wall_hit);
 	r->tex_x = (int)(r->wall_x * (*tex)->width);
 }
 
 void	draw_ray_column(t_game *g, t_ray *r, t_texture *tex, int x)
 {
-	int		y;
-	int		tex_y;
-	uint8_t	*p;
+	int			y;
+	int			tex_y;
+	uint8_t		*p;
 	uint32_t	color;
 
 	r->tex_step = (float)tex->height / (float)r->wall_height;
@@ -138,17 +111,13 @@ void	draw_ray_column(t_game *g, t_ray *r, t_texture *tex, int x)
 	r->tex_pos -= HEIGHT / 2;
 	r->tex_pos += r->wall_height / 2;
 	r->tex_pos *= r->tex_step;
-
 	y = r->draw_start;
 	while (y < r->draw_end)
 	{
 		tex_y = (int)r->tex_pos;
 		r->tex_pos += r->tex_step;
-
 		p = &tex->texture->pixels[(tex_y * tex->width + r->tex_x) * 4];
-
 		color = (p[0] << 24) | (p[1] << 16) | (p[2] << 8) | p[3];
-
 		pixel_placer(x, y, color, g);
 		y++;
 	}

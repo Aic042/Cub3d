@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:16:07 by root              #+#    #+#             */
-/*   Updated: 2025/12/17 16:01:01 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/12/22 12:43:35 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,8 @@ void	get_text(int fd, char **str, t_game *game, int I)
 			temp = get_next_line(fd);
 		}
 	}
+	if (game->inf[4])
+		parse_fc_line(game->inf[4], &game->floor_color);
+	if (game->inf[5])
+		parse_fc_line(game->inf[5], &game->ceiling_color);
 }
