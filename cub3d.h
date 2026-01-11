@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2026/01/11 10:31:07 by root             ###   ########.fr       */
+/*   Updated: 2026/01/11 10:58:08 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ int			check_cases(int	*x, int y, char **map, t_player *player);
 int			check_walls(char **map, t_player *player);
 void		init_game(t_game *game);
 void		pixel_placer(int x, int y, uint32_t color, t_game *game);
-// bool		touch(t_game *game, int player_x, int player_y);
 void		draw_minimap(t_game *g, int py, int px, int mx);
 void		draw_cleaner(t_game *game);
 void		init_player(t_player *player);

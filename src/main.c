@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2026/01/09 15:01:33 by sbolivar         ###   ########.fr       */
+/*   Updated: 2026/01/11 15:52:10 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	perform_dda(t_ray *r, t_game *g)
 			r->map_y += r->step_y;
 			r->side = 1;
 		}
-		if (touch(g, r->map_x * TILE, r->map_y * TILE))
+		if (touch(g, (float)r->map_x * TILE + TILE * 0.5f,
+				(float)r->map_y * TILE + TILE * 0.5f))
 			break ;
 	}
 }
@@ -101,6 +102,9 @@ int	main(int argc, char **argv)
 	if (!ft_validate_file(argv[1]))
 		return (printf("error con argc\n"), -1);
 	game = malloc(sizeof(t_game));
+	if (!game)
+		return (EXIT_FAILURE);
+	ft_bzero(game, sizeof(t_game));
 	if (!game)
 		return (EXIT_FAILURE);
 	game->select_map = argv[1];

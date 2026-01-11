@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 08:19:52 by root              #+#    #+#             */
-/*   Updated: 2026/01/09 13:19:19 by sbolivar         ###   ########.fr       */
+/*   Updated: 2026/01/11 15:36:16 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 void	calc_ray_dir(t_ray *r, int ray_id, int num_rays, t_player *p)
 {
-	float	f_id;
-	float	f_nr;
 	float	camera_x;
 
-	f_id = (float)ray_id;
-	f_nr = (float)num_rays;
 	camera_x = (2.0f * ray_id / (float)(num_rays - 1)) - 1.0f;
 	r->dir_x = cos(p->angle) - sin(p->angle) * camera_x * (PI / 6.0f);
 	r->dir_y = sin(p->angle) + cos(p->angle) * camera_x * (PI / 6.0f);
