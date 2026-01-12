@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 14:40:30 by sbolivar          #+#    #+#             */
-/*   Updated: 2026/01/11 15:50:10 by root             ###   ########.fr       */
+/*   Updated: 2026/01/12 12:45:14 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_double(char **str)
 	int	i;
 
 	i = 0;
-	if (!str || !str[i])
+	if (!str)
 		return ;
 	while (str[i])
 	{
@@ -27,8 +27,25 @@ void	free_double(char **str)
 	free(str);
 }
 
+void	free_paths(char **str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return ;
+	while (str[i])
+	{
+		printf("%s", str[i]);
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
 void	free_game(t_game *game)
 {
+
 	if (!game)
 		return ;
 	if (game->image)
@@ -45,9 +62,9 @@ void	free_game(t_game *game)
 		mlx_delete_texture(game->west.texture);
 	free_double(game->map);
 	free_double(game->inf);
-	free_double(game->paths);
+	free_paths(game->paths);
 	free(game->select_map);
-	free(game->pixel);
+	// free(game->pixel);
 	free(game->title);
 	free(game);
 }

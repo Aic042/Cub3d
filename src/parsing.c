@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:16:07 by root              #+#    #+#             */
-/*   Updated: 2025/12/22 12:43:35 by sbolivar         ###   ########.fr       */
+/*   Updated: 2026/01/12 13:01:38 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	get_paths(t_game *game)
 	int	i;
 
 	i = 0;
-	game->paths = ft_calloc(sizeof(char *), 4);
+	game->paths = ft_calloc(sizeof(char *), 5);
 	if (!game->paths)
 		return ;
 	while (i < 4)
