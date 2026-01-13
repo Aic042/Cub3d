@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2026/01/12 14:54:16 by sbolivar         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:26:50 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void	setup_player_spawn(t_game *game, float angle, float pos_x, float pos_y)
 int	main(int argc, char **argv)
 {
 	t_game		*game;
-	t_player	*player;
 
 	if (argc != 2)
 		return (printf("error con argc\n"), -1);
@@ -111,8 +110,6 @@ int	main(int argc, char **argv)
 	game->map = get_map(game, 0, 0);
 	if (!game->map)
 		return (free_game(game), EXIT_FAILURE);
-	player = &game->player;
-	(void)player;
 	init_game(game);
 	init_player(&game->player);
 	load_all_textures(game);

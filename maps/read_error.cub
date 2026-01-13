@@ -1,7 +1,7 @@
-NO ./Sprites/Texture_Side1.png
-SO ./Sprites/Texture_Side1.png
-WE ./Sprites/Texture_Side1.png
-EA ./Sprites/Texture_Side1.png
+NO ./Sprites/Texture_Side.png
+SO ./Sprites/Texture_Side.png
+WE ./Sprites/Texture_Side.png
+EA ./Sprites/Texture_Side.png
 F 78,52,46
 C 78,52,466
 1111 111111

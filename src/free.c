@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 14:40:30 by sbolivar          #+#    #+#             */
-/*   Updated: 2026/01/12 14:36:58 by sbolivar         ###   ########.fr       */
+/*   Updated: 2026/01/13 12:44:55 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	free_paths(char **str)
 
 void	free_game(t_game *game)
 {
-
 	if (!game)
 		return ;
 	if (game->image)
@@ -63,7 +62,6 @@ void	free_game(t_game *game)
 	free_double(game->inf);
 	free_paths(game->paths);
 	free(game->select_map);
-	// free(game->pixel);
 	free(game->title);
 	free(game);
 }
