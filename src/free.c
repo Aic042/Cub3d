@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 14:40:30 by sbolivar          #+#    #+#             */
-/*   Updated: 2026/01/12 12:45:14 by aingunza         ###   ########.fr       */
+/*   Updated: 2026/01/12 14:36:58 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	free_paths(char **str)
 		return ;
 	while (str[i])
 	{
-		printf("%s", str[i]);
 		free(str[i]);
 		i++;
 	}

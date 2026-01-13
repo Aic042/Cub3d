@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 20:13:15 by root              #+#    #+#             */
-/*   Updated: 2026/01/11 15:52:10 by root             ###   ########.fr       */
+/*   Updated: 2026/01/12 14:54:16 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	game->select_map = argv[1];
 	game->map = get_map(game, 0, 0);
+	if (!game->map)
+		return (free_game(game), EXIT_FAILURE);
 	player = &game->player;
 	(void)player;
 	init_game(game);
@@ -118,6 +120,5 @@ int	main(int argc, char **argv)
 	mlx_key_hook(game->mlx, &ft_my_hook, game);
 	mlx_loop_hook(game->mlx, &render, game);
 	mlx_loop(game->mlx);
-	free_game(game);
-	return (EXIT_SUCCESS);
+	return (free_game(game), EXIT_SUCCESS);
 }

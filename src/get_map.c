@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 15:22:49 by sbolivar          #+#    #+#             */
-/*   Updated: 2026/01/09 15:01:03 by sbolivar         ###   ########.fr       */
+/*   Updated: 2026/01/12 14:51:12 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	get_y(int size_y, char *map)
 	return (size_y - 6);
 }
 
-void	get_sizes(t_game *game)
+int	get_sizes(t_game *game)
 {
 	int		fd;
 	char	*temp;
@@ -43,7 +43,7 @@ void	get_sizes(t_game *game)
 	if (fd == -1)
 	{
 		perror("Error al abrir el archivo");
-		return ;
+		return (fd);
 	}
 	temp = get_next_line(fd);
 	while (temp)
@@ -55,7 +55,7 @@ void	get_sizes(t_game *game)
 	}
 	close(fd);
 	game->size_y = get_y(game->size_y, game->select_map);
-	return ;
+	return (fd);
 }
 
 char	*give_map_line(char *map, char *temp)
@@ -94,7 +94,9 @@ char	**get_map(t_game *game, int y, int player)
 	int	x;
 
 	game->select_map = ft_strjoin("maps/", game->select_map);
-	get_sizes(game);
+	x = get_sizes(game);
+	if (x == -1)
+		return (NULL);
 	get_map_utils(game);
 	get_paths(game);
 	while (game->map[y])
