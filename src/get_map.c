@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 15:22:49 by sbolivar          #+#    #+#             */
-/*   Updated: 2026/01/12 14:51:12 by sbolivar         ###   ########.fr       */
+/*   Updated: 2026/01/13 15:59:53 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,12 @@ int	get_sizes(t_game *game)
 {
 	int		fd;
 	char	*temp;
+	int		i;
 
+	i = 0;
 	fd = open(game->select_map, O_RDONLY);
 	if (fd == -1)
-	{
-		perror("Error al abrir el archivo");
-		return (fd);
-	}
+		return (perror("Error al abrir el archivo"), fd);
 	temp = get_next_line(fd);
 	while (temp)
 	{
@@ -95,7 +94,7 @@ char	**get_map(t_game *game, int y, int player)
 
 	game->select_map = ft_strjoin("maps/", game->select_map);
 	x = get_sizes(game);
-	if (x == -1)
+	if (x == -1 || comp_map(game))
 		return (NULL);
 	get_map_utils(game);
 	get_paths(game);
@@ -107,9 +106,7 @@ char	**get_map(t_game *game, int y, int player)
 			x++;
 			if (game->map[y][x] == 'N' || game->map[y][x] == 'S'
 			|| game->map[y][x] == 'E' || game->map[y][x] == 'W')
-			{
 				player++;
-			}
 		}
 		y++;
 	}

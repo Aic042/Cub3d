@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2026/01/12 14:44:36 by sbolivar         ###   ########.fr       */
+/*   Updated: 2026/01/13 15:57:39 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,8 @@ void		draw_square_3(int x, int y, uint32_t color, t_game *game);
 void		load_all_textures(t_game *game);
 void		init_dda_utils(t_ray *r, t_player *p, float pos_x, float pos_y);
 int			ft_validate_file(char	*map_path);
+int			comp_map(t_game *game);
+int			comp_map(t_game *game);
+void		free_double(char **str);
 
 #endif
