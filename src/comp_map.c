@@ -6,25 +6,19 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:54:27 by sbolivar          #+#    #+#             */
-/*   Updated: 2026/01/14 14:03:19 by sbolivar         ###   ########.fr       */
+/*   Updated: 2026/01/14 15:38:04 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	comp_map(t_game *game)
+int	comp_temp(char *temp, int fd)
 {
-	int		fd;
-	char	*temp;
-	int		i;
-	int		error;
+	int	i;
+	int	error;
 
-	error = 0;
 	i = 0;
-	fd = open(game->select_map, O_RDONLY);
-	if (fd == -1)
-		return (perror("Error al abrir el archivo"), fd);
-	temp = get_next_line(fd);
+	error = 0;
 	while (temp)
 	{
 		if (temp[0] == '\n')
@@ -38,7 +32,37 @@ int	comp_map(t_game *game)
 		free(temp);
 		temp = get_next_line(fd);
 	}
-	if (error > 0)
+	return (error);
+}
+
+int	comp_paths(t_game *game)
+{
+	int	i;
+	int	fd;
+
+	i = 0;
+	while (game->paths[i])
+	{
+		fd = open(game->paths[i], O_RDONLY);
+		if (fd == -1)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	comp_map(t_game *game)
+{
+	int		fd;
+	char	*temp;
+	int		i;
+
+	i = 0;
+	fd = open(game->select_map, O_RDONLY);
+	if (fd == -1)
+		return (perror("Error al abrir el archivo"), fd);
+	temp = get_next_line(fd);
+	if (comp_temp(temp, fd))
 		return (1);
 	return (0);
 }

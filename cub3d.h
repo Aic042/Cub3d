@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:17:13 by root              #+#    #+#             */
-/*   Updated: 2026/01/13 15:57:39 by sbolivar         ###   ########.fr       */
+/*   Updated: 2026/01/14 15:35:52 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,6 @@ int			ft_validate_file(char	*map_path);
 int			comp_map(t_game *game);
 int			comp_map(t_game *game);
 void		free_double(char **str);
+int			comp_paths(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 15:22:49 by sbolivar          #+#    #+#             */
-/*   Updated: 2026/01/13 15:59:53 by sbolivar         ###   ########.fr       */
+/*   Updated: 2026/01/14 15:38:25 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ char	**get_map(t_game *game, int y, int player)
 		return (NULL);
 	get_map_utils(game);
 	get_paths(game);
+	if (comp_paths(game))
+		return (free_double(game->map), NULL);
 	while (game->map[y])
 	{
 		x = 0;
